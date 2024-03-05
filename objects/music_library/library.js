@@ -42,6 +42,16 @@ const obtainTracks = (trackId, tracksLibrary) => {
   console.log(`${trackId}: ${tracksLibrary.tracks[trackId].name} by ${tracksLibrary.tracks[trackId].artist} (${tracksLibrary.tracks[trackId].album})`);
 };
 
+const createTrack = (name, artist, album) => {
+  const id = generateUid();
+  return {
+    id,
+    name,
+    artist,
+    album,
+  };
+};
+
 // prints a list of all playlists, in the form:
 // p01: Coding Music - 2 tracks
 // p02: Other Playlist - 1 tracks
@@ -75,40 +85,44 @@ const printPlaylist = function(playlistId, tracksLibrary) {
 };
 
 
+
 // adds an existing track to an existing playlist
 const addTrackToPlaylist = function(trackId, playlistId) {
 
-}
+};
 
 
 // generates a unique id
 // (already implemented: use this for addTrack and addPlaylist)
 const generateUid = function() {
   return Math.floor((1 + Math.random()) * 0x10000).toString(16).substring(1);
-}
+};
 
 
 // adds a track to the library
 const addTrack = function(name, artist, album) {
-
-}
+  const track = createTrack(name, artist, album);
+  library.tracks[track.id] = track;
+  return library;
+};
 
 
 // adds a playlist to the library
 const addPlaylist = function(name) {
 
-}
+};
 
 
 // STRETCH:
 // given a query string string, prints a list of tracks
 // where the name, artist or album contains the query string (case insensitive)
-// tip: use "string".search("tri") 
+// tip: use "string".search("tri")
 // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/search
 const printSearchResults = function(query) {
 
-}
+};
 
 //printPlaylists(library);
 //printTracks(library);
 //printPlaylist("p01", library);
+//console.log(JSON.stringify(addTrack("Black bird", "The Beatles", "White Album"), null, 4));
