@@ -52,6 +52,15 @@ const createTrack = (name, artist, album) => {
   };
 };
 
+const createPlaylist = (name, tracks) => {
+  const id = generateUid();
+  return {
+    id,
+    name,
+    tracks
+  };
+};
+
 // prints a list of all playlists, in the form:
 // p01: Coding Music - 2 tracks
 // p02: Other Playlist - 1 tracks
@@ -87,8 +96,9 @@ const printPlaylist = function(playlistId, tracksLibrary) {
 
 
 // adds an existing track to an existing playlist
-const addTrackToPlaylist = function(trackId, playlistId) {
-
+const addTrackToPlaylist = function(trackId, playlistId, tracksLibrary) {
+  tracksLibrary.playlists[playlistId].tracks.push(trackId);
+  return tracksLibrary;
 };
 
 
@@ -108,8 +118,10 @@ const addTrack = function(name, artist, album) {
 
 
 // adds a playlist to the library
-const addPlaylist = function(name) {
-
+const addPlaylist = (name, tracks) => {
+  const playlist = createPlaylist(name, tracks);
+  library.playlists[playlist.id] = playlist;
+  return library;
 };
 
 
@@ -118,11 +130,20 @@ const addPlaylist = function(name) {
 // where the name, artist or album contains the query string (case insensitive)
 // tip: use "string".search("tri")
 // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/search
-const printSearchResults = function(query) {
-
+const printSearchResults = function(query, tracksLibrary) {
+  const listOfTracks = [];
+  for (let track in tracksLibrary.tracks) {
+    for (let info in tracksLibrary.tracks[track]) {
+      if (tracksLibrary.tracks[track][info].toLowerCase().search(query.toLowerCase()) !== -1) listOfTracks.push(tracksLibrary.tracks[track]);
+    }
+  }
+  console.log(JSON.stringify(listOfTracks, null, 4));
 };
 
 //printPlaylists(library);
 //printTracks(library);
 //printPlaylist("p01", library);
-//console.log(JSON.stringify(addTrack("Black bird", "The Beatles", "White Album"), null, 4));
+//addTrack("Black bird", "The Beatles", "White Album")
+//console.log(JSON.stringify(addPlaylist("Chilling", ["t01", "t02", "t03"]), null, 4));
+//console.log(JSON.stringify(addTrackToPlaylist("t01", "p02", library), null, 4));
+printSearchResults("a", library);
