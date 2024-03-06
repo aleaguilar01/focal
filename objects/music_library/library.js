@@ -140,10 +140,10 @@ const printSearchResults = function(query, tracksLibrary) {
   console.log(JSON.stringify(listOfTracks, null, 4));
 };
 
-//printPlaylists(library);
-//printTracks(library);
-//printPlaylist("p01", library);
-//addTrack("Black bird", "The Beatles", "White Album")
-//console.log(JSON.stringify(addPlaylist("Chilling", ["t01", "t02", "t03"]), null, 4));
-//console.log(JSON.stringify(addTrackToPlaylist("t01", "p02", library), null, 4));
+printPlaylists(library);
+printTracks(library);
+printPlaylist("p01", library);
+addTrack("Black bird", "The Beatles", "White Album")
+console.log(JSON.stringify(addPlaylist("Chilling", ["t01", "t02", "t03"]), null, 4));
+console.log(JSON.stringify(addTrackToPlaylist("t01", "p02", library), null, 4));
 printSearchResults("a", library);
